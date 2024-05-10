@@ -10,11 +10,17 @@ public class BeginPanel : BasePanel<BeginPanel>
     public CustomGUIButton SettingButton;
     public CustomGUIButton QuitButton;
 
-    private void Awake()
+    
+    //注册按钮事件放在start中执行，因为awake阶段是获取单例实例的时候，如果注册事件在start之前，会报错空引用
+    private void Start()
     {
         StartButton.clickEvent += () => { SceneManager.LoadScene("PlayScene"); };
 
-        SettingButton.clickEvent += () => { };
+        SettingButton.clickEvent += () =>
+        {
+            SettingPanel.Instance.ShowMe();
+            HideMe();
+        };
         
         QuitButton.clickEvent += () => { Application.Quit(); };
     }
