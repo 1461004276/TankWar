@@ -12,16 +12,10 @@ public class BeginPanel : BasePanel<BeginPanel>
 
     private void Awake()
     {
-        StartButton.clickEvent += () =>
-        {
-            SceneManager.LoadScene("PlayScene");
-        };
+        StartButton.clickEvent += () => { SceneManager.LoadScene("PlayScene"); };
 
         SettingButton.clickEvent += () => { };
         
-        QuitButton.clickEvent += () =>
-        {
-            Application.Quit();
-        };
+        QuitButton.clickEvent += () => { Application.Quit(); };
     }
 }
