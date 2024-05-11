@@ -19,12 +19,12 @@ public class BasePanel<T> : MonoBehaviour where T : class
         instance = this as T;
     }
 
-    public void ShowMe()
+    public virtual void ShowMe()
     {
         this.gameObject.SetActive(true);
     }
 
-    public void HideMe()
+    public virtual void HideMe()
     {
         this.gameObject.SetActive(false);
 
