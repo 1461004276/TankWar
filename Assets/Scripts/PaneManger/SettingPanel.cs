@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingPanel : BasePanel<SettingPanel>
 {
@@ -17,8 +18,17 @@ public class SettingPanel : BasePanel<SettingPanel>
     {
         CloseButton.clickEvent += () =>
         {
-            BeginPanel.Instance.ShowMe();
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("BeginScene"))
+            {
+                BeginPanel.Instance.ShowMe();
+            }
+            else
+            {
+                PlayPanel.Instance.ShowMe();
+            }
+
             HideMe();
+            Time.timeScale = 1f;
         };
 
         musicToggle.changeValue += DataManager.Instance.openMusic;
@@ -36,6 +46,7 @@ public class SettingPanel : BasePanel<SettingPanel>
     {
         base.ShowMe();
         updataInfo();
+        Time.timeScale = 0f;
     }
 
     private void updataInfo()
